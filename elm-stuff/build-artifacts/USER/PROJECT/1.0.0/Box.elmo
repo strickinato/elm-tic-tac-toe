@@ -1,0 +1,68 @@
+Elm.Box = Elm.Box || {};
+Elm.Box.make = function (_elm) {
+   "use strict";
+   _elm.Box = _elm.Box || {};
+   if (_elm.Box.values)
+   return _elm.Box.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   $moduleName = "Box",
+   $Basics = Elm.Basics.make(_elm),
+   $Html = Elm.Html.make(_elm),
+   $Html$Attributes = Elm.Html.Attributes.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var asText = function (model) {
+      return function () {
+         switch (model.ctor)
+         {case "Nobody": return " ";
+            case "Player1": return "X";
+            case "Player2": return "0";}
+         _U.badCase($moduleName,
+         "between lines 41 and 44");
+      }();
+   };
+   var view = F2(function (address,
+   model) {
+      return A2($Html.div,
+      _L.fromArray([$Html$Attributes.$class("cell")]),
+      _L.fromArray([$Html.text(asText(model))]));
+   });
+   var update = F2(function (action,
+   model) {
+      return function () {
+         switch (action.ctor)
+         {case "Flip":
+            return function () {
+                 switch (action._0.ctor)
+                 {case "Nobody":
+                    return action._0;
+                    case "Player1": return model;
+                    case "Player2": return model;}
+                 _U.badCase($moduleName,
+                 "between lines 25 and 28");
+              }();}
+         _U.badCase($moduleName,
+         "between lines 23 and 28");
+      }();
+   });
+   var Flip = function (a) {
+      return {ctor: "Flip",_0: a};
+   };
+   var Nobody = {ctor: "Nobody"};
+   var Player2 = {ctor: "Player2"};
+   var Player1 = {ctor: "Player1"};
+   _elm.Box.values = {_op: _op
+                     ,Player1: Player1
+                     ,Player2: Player2
+                     ,Nobody: Nobody
+                     ,Flip: Flip
+                     ,update: update
+                     ,view: view
+                     ,asText: asText};
+   return _elm.Box.values;
+};
